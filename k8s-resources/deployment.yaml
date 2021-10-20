@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fnbmeshclient
+  # labels so that we can bind a Service to this Pod
+  labels:
+    app: fnbmeshclient
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fnbmeshclient
+  template:
+    metadata:
+      labels:
+        app: fnbmeshclient
+    spec:
+      containers:
+      - name: fnbmeshclient
+        image: dmatanganyidze/fnbmeshclient:v1
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "500m" #half the CPU free: 0.5 Core
+            memory: "256Mi"
+          limits:
+            cpu: "1000m" #max 1.0 Core
+            memory: "512Mi"
+        ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+  <title>Cloud application</title>
+</head>
+<body>
+  <div class="container">
+      <h1>RealTime Service Alerts</h1>
+		<form th:action="@{/send}" th:method="post"  th:object="${newProvider}">
+		  <input type="text" name="message" class="u-full-width"  th:value="${newProvider.id}" th:field="*{id}"/>
+          <input type="text" name="message" class="u-full-width"  th:value="${newProvider.accountName}" th:field="*{accountName}"/>
+          <input type="text" name="message" class="u-full-width"  th:value="${newProvider.description}" th:field="*{description}"/>
+          <input type="text" name="message" class="u-full-width"  th:field="*{liveStatus}"/>		  
+		  <button type="submit" class="button-primary u-full-width">SEND</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+  <title>Skills application</title>
+</head>
+<body>
+  <div class="container">
+      <h1>My Service Providers</h1>
+    <div class="row" th:each="provider : ${providers}">
+      <div class="nine columns">
+        <form th:method="put" th:action="@{/}">
+          <input type="hidden" name="id" th:value="${provider.id}" />
+          <input type="hidden" name="description" th:value="${provider.description}" />
+          <input type="hidden" name="accountName" th:value="${provider.accountName}" />
+          <input type="checkbox" name="completed" th:checked="${provider.completed}" onchange="form.submit()" />
+           <span th:text="${provider.id}">||</span> <span th:text="${provider.description}"></span> : <span th:text="${provider.accountName}"></span>
+        </form>
+      </div>
+      <div class="three columns">
+        <form th:method="delete" th:action="@{/}">
+          <input type="hidden" name="id" th:value="${provider.id}" />
+          <button class="button u-full-width" type="submit">Switch</button>
+        </form>
+      </div>
+    </div>
+    <hr />
+    <form method="post" th:action="@{/}" th:object="${newProvider}">
+      <div class="row">
+        <div class="nine columns">
+          <input type="text" placeholder="Add Debit Order" class="u-full-width" th:field="*{description}" />
+          <span th:if="${error != null}" th:text="${error}"></span>
+        </div>
+        <div class="three columns">
+          <button type="submit" class="button-primary u-full-width">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

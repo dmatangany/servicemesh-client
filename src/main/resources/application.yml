@@ -1,0 +1,5 @@
+server:
+  port: 8081
+resource:
+  providers: http://a319ad34e389547f2ba8aac6719e90c5-1438607034.us-east-1.elb.amazonaws.com/api/providers
+  orders: http://a319ad34e389547f2ba8aac6719e90c5-1438607034.us-east-1.elb.amazonaws.com/api/orders
